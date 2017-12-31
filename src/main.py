@@ -1,6 +1,6 @@
 import utils
 import preparation
-import matplotlib.pyplot as plt
+import exploration
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
@@ -11,6 +11,10 @@ def main():
     print data.head()
     target = data[['Survived']].copy()
     del data['Survived']
+
+    for column in ['Age', 'Fare', 'Parch', 'Pclass',
+            'SibSp' , 'Survived']:
+        exploration.distribution_visualization(df[column])
 
     X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=0.33, random_state=42)
     
